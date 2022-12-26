@@ -1,5 +1,8 @@
 const express = require("express");
 const routes = express.Router();
+const multer = require("multer");
+const { storage } = require("./config/multerConfig");
+const upload = multer({ storage: storage });
 
 const FollowController = require("./controllers/follow.controller");
 const PersonController = require("./controllers/person.controller");
@@ -7,6 +10,10 @@ const AuthController = require("./controllers/auth.controller");
 const verifyToken = require("./middlewares/authJWT");
 const verifyJWT = require("./middlewares/authJWT");
 const ArticleController = require("./controllers/article.controller");
+
+routes.post("/api/v1/upload", upload.single("file"), (req, res) => {
+  return res.json({ file: req.file.filename });
+});
 
 routes.get("/", () => {
   return `Api Ok`;
