@@ -13,7 +13,7 @@ routes.get("/", () => {
 });
 
 routes.get("/api/v1/person", verifyToken, PersonController.findAll);
-routes.post("/api/v1/person", verifyToken, PersonController.store);
+routes.post("/api/v1/person", PersonController.store);
 routes.get("/api/v1/person/:id", verifyToken, PersonController.findById);
 routes.put("/api/v1/person/:id", verifyToken, PersonController.update);
 routes.delete("/api/v1/person/:id", verifyToken, PersonController.delete);
