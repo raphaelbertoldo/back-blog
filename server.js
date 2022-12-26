@@ -15,4 +15,5 @@ app.use(cors());
 app.use(express.json());
 app.use(routes);
 
+app.use(express.static("public"));
 app.listen(PORT, () => console.log(`Server up at http://localhost:${PORT}`));
