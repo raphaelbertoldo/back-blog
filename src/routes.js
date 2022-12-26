@@ -8,6 +8,10 @@ const verifyToken = require("./middlewares/authJWT");
 const verifyJWT = require("./middlewares/authJWT");
 const ArticleController = require("./controllers/article.controller");
 
+routes.get("/", () => {
+  return `Api Ok`;
+});
+
 routes.get("/api/v1/person", verifyToken, PersonController.findAll);
 routes.post("/api/v1/person", verifyToken, PersonController.store);
 routes.get("/api/v1/person/:id", verifyToken, PersonController.findById);
