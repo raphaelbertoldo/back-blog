@@ -11,15 +11,14 @@ module.exports = {
     return res.status(200).json(persons);
   },
   async store(req, res) {
-    const { name, age, email, username, picture, password } = req.body;
+    const { name, email, age, picture, password } = req.body;
     const personService = new PersonService(db);
     const person = await personService.store(
       name,
-      age,
       email,
-      password,
-      username,
-      picture
+      age,
+      picture,
+      password
     );
     if (!person) {
       return res.status(400).json({ error: "Error creating person" });
