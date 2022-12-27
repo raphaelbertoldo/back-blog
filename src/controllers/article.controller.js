@@ -13,10 +13,10 @@ module.exports = {
   },
   async store(req, res) {
     const id = req.params.id;
-    const { title, description } = req.body;
+    const { title, description, picture } = req.body;
     const articleService = new ArticleService(db);
 
-    const article = await articleService.store(id, title, description);
+    const article = await articleService.store(id, title, description, picture);
     if (!article) {
       return res.status(400).json({ error: "Error creating article" });
     } else {

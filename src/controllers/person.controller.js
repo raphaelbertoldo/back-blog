@@ -11,7 +11,7 @@ module.exports = {
     return res.status(200).json(persons);
   },
   async store(req, res) {
-    const { name, age, email, password } = req.body;
+    const { name, age, email, username, picture, password } = req.body;
     const personService = new PersonService(db);
     const person = await personService.store(name, age, email, password);
     if (!person) {

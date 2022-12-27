@@ -6,12 +6,12 @@ class PersonService {
     this.db = db;
   }
 
-  async store(name, age, email, password) {
+  async store(name, age, email, username, picture, password) {
     try {
       const id = uuidv4();
       const hash = await bcrypt.hash(password, 10);
       await this.db.run(
-        `Create (u:Person {_id: "${id}", name: "${name}", age: "${age}", email: "${email}", password: "${hash}", createdAt: "datetime(${new Date()})"} ) return u`
+        `Create (u:Person {_id: "${id}", name: "${name}", age: "${age}", email: "${email}", username: "${username}", picture: "${picture}", password: "${hash}", createdAt: "datetime(${new Date()})"} ) return u`
       );
       return await this.findById(id);
     } catch (err) {
