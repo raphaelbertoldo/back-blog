@@ -6,12 +6,12 @@ class ArticleService {
     this.db = db;
   }
 
-  async store(author, title, description) {
+  async store(author, title, description, picture) {
     try {
       const id = uuidv4();
       const result = await this.db.run(`
         MATCH (person:Person {_id: "${author}"})
-        CREATE (article:Article {_id: "${id}", title: "${title}", description: "${description}", author: person.name, createdAt: "datetime(${new Date()})"} )
+        CREATE (article:Article {_id: "${id}", title: "${title}", description: "${description}", picture: "${picture}", author: person.name, createdAt: "datetime(${new Date()})"} )
         CREATE (person)-[r:BELONG]->(article)
         RETURN article`);
       return result.records[0].get(0).properties;
